@@ -1426,7 +1426,7 @@ static ssize_t i2c_device_test_read_func(struct file *file, char __user *user_bu
 	if(!ts_g)
 		return ret;
 	TPD_DEBUG("gesture enable is: %d\n", ts->double_enable);
-	ret = sprintf(page, "%d\n", ts->i2c_device_test);
+	ret = snprintf(page, sizeof(page), "%d\n", ts->i2c_device_test);
 	ret = simple_read_from_buffer(user_buf, count, ppos, page, strlen(page));
 	return ret;
 }
@@ -1892,7 +1892,7 @@ static ssize_t tp_glove_read_func(struct file *file, char __user *user_buf, size
 	if(!ts)
 		return ret;
 	printk("glove mode enable is: %d\n", ts->glove_enable);
-	ret = sprintf(page, "%d\n", ts->glove_enable);
+	ret = snprintf(page, sizeof(page), "%d\n", ts->glove_enable);
 	ret = simple_read_from_buffer(user_buf, count, ppos, page, strlen(page));
 	return ret;
 }
@@ -1939,7 +1939,7 @@ static ssize_t tp_sleep_read_func(struct file *file, char __user *user_buf, size
 	int ret = 0;
 	char page[PAGESIZE];
 	printk("sleep mode enable is: %d\n", sleep_enable);
-	ret = sprintf(page, "%d\n", sleep_enable);
+	ret = snprintf(page, sizeof(page), "%d\n", sleep_enable);
 	ret = simple_read_from_buffer(user_buf, count, ppos, page, strlen(page));
 	return ret;
 }
@@ -2013,7 +2013,7 @@ static ssize_t vendor_id_read_func(struct file *file, char __user *user_buf, siz
 {
 	int ret = 0;
 	char page[4];
-	ret = sprintf(page, "6\n");
+	ret = snprintf(page, sizeof(page), "6\n");
 	ret = simple_read_from_buffer(user_buf, count, ppos, page, strlen(page));
 	return ret;
 }
@@ -2839,7 +2839,7 @@ static ssize_t changer_read_func(struct file *file, char __user *user_buf, size_
 	struct synaptics_ts_data *ts = ts_g;
 	if(!ts)
 		return ret;
-	ret = sprintf(page, "the changer is %s!\n", ts->changer_connet?("conneted"):("disconneted"));
+	ret = snprintf(page, sizeof(page), "the changer is %s!\n", ts->changer_connet?("conneted"):("disconneted"));
 	ret = simple_read_from_buffer(user_buf, count, ppos, page, strlen(page));
 	return ret;
 }
