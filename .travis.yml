@@ -1,0 +1,9 @@
+language: cpp
+compiler: gcc
+dist: bionic
+
+git:
+  depth: 1
+  
+script:
+  - bash travis.sh
