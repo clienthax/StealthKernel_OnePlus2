@@ -4,6 +4,9 @@ dist: bionic
 
 git:
   depth: 1
-  
+
+cache:
+  - ccache
+
 script:
   - bash travis.sh
